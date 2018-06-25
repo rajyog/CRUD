@@ -52,4 +52,15 @@ class User_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	function delete_user($user_id) {
+        $this->db->where('user_id', $user_id);
+        $this->db->delete('tbl_user');
+    }
+
+    function get_all_user($user_id) {
+        $sql = "select * from tbl_user where user_id= '$user_id'";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+
 }

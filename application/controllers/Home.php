@@ -45,7 +45,7 @@ class Home extends CI_Controller {
 	}
 
 	public function list_user() {
-        $limit = 10;
+        $limit = 5;
         $page = $this->input->post('pagee');
         $firstname = $this->input->post('firstname');
         
@@ -64,4 +64,18 @@ class Home extends CI_Controller {
         $data['total_pages'] = $total_pages;
         echo json_encode($data);
     }
+
+	public function delete_user() {
+        $user_id = $this->input->post('user_id');
+        $result = $this->user_model->delete_user($user_id);
+    }
+
+	public function edit_user_view($user_id)
+	{
+		$data['user'] = $this->user_model->get_all_user($user_id);
+		$this->load->view('edit_user_view',$data);
+	}
+
+
+
 }
